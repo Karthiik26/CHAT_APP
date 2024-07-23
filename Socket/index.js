@@ -2,9 +2,9 @@ const express = require("express");
 const { Server } = require("socket.io");
 const http = require("http");
 const getDetailsFromToken = require("../helper/getDetailsFromToken");
+const getConversation = require('../helper/GetConversation');
 const UserModel = require("../module/UserModel");
 const mongoose = require("mongoose");
-const getConversation = require("../helper/getConversation");
 const ObjectId = mongoose.Types.ObjectId;
 
 const {
