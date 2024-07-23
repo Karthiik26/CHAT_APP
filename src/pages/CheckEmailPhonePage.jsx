@@ -64,8 +64,8 @@ const CheckEmailPhonePage = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center mt-8">
-        <div className="w-4/12 pl-8 pt-2 pb-2 pr-8 m-2 shadow-2xl grid gap-4">
+      <div className="flex justify-center items-center m-auto mt-8">
+        <div className="w-4/12 md:bg-transparent md:shadow-none flex-col justify-center items-center pl-8 pt-2 pb-2 pr-8 m-2 shadow-2xl grid gap-4">
           <form onSubmit={HandleSubmit}>
             <h2 className="font-bold text-xl mt-5 text-center mb-3">
               Welcome Back To Chat App
