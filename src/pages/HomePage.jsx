@@ -17,10 +17,10 @@ const HomePage = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log(redux);
+    console.log("Home",redux);
   }, [redux]);
 
-  console.log("location", location);
+  console.log("location home", location);
 
   // useEffect(() => {
   //   if(!localStorage.getItem("token")){

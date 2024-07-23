@@ -6,9 +6,8 @@ import { toast } from "react-hot-toast";
 import { setToken } from "../Redux/UserSlice";
 
 const CheckPasswordPage = () => {
-  
-  const dispatch = useDispatch()
-  
+  const dispatch = useDispatch();
+
   const location = useLocation();
   console.log(location);
 
@@ -16,7 +15,7 @@ const CheckPasswordPage = () => {
 
   const [data, setData] = useState({
     password: "",
-    userId: location?.state?._id,
+    userId: location?.state?._id.toString(),
   });
 
   useEffect(() => {
@@ -49,20 +48,22 @@ const CheckPasswordPage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-        credentials: 'include',
+        credentials: "include",
       });
 
       const apires = await response.json();
-      
+
       if (apires.success) {
         toast.success(apires?.message);
-        nav("/");
-        
-        console.log(apires);
+        nav("/", {
+          state: apires?.data,
+        });
+
+        console.log("apires", apires);
 
         dispatch(setToken(apires?.token));
-        
-        localStorage.setItem('token',apires?.token)
+
+        localStorage.setItem("token", apires?.token);
       } else {
         toast.error(apires?.message);
       }
