@@ -22,13 +22,13 @@ const HomePage = () => {
 
   console.log("location", location);
 
-  useEffect(() => {
-    if(!localStorage.getItem("token")){
-      nav("/Email");
-    }else{
-      nav("/");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if(!localStorage.getItem("token")){
+  //     nav("/Email");
+  //   }else{
+  //     nav("/");
+  //   }
+  // }, []);
 
   useEffect(() => {
     HandleUserDataGetting();
