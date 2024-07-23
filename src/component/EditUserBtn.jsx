@@ -52,7 +52,7 @@ const EditUserBtn = ({ onclose, user }) => {
     e.stopPropagation();
 
     const URL = `${import.meta.env.VITE_BACKEND_URL}ChatApp/UpdateUser`;
-
+console.log(Data)
     try {
 
       const response = await fetch(URL, {
@@ -71,6 +71,7 @@ const EditUserBtn = ({ onclose, user }) => {
         toast.success(apires?.message)
         console.log(apires?.data)
         dispatch(setUser(apires?.data))
+        onclose();
       }else {
         toast.error(apires?.message)
       }
@@ -138,13 +139,11 @@ const EditUserBtn = ({ onclose, user }) => {
             </div>
           </div>
 
-          <div className="py-[1px] bg-slate-300 w-full"></div>
-
           <div className="flex justify-end gap-3 my-4">
             <button onClick={onclose} className="border-2 border-red-500 px-3 py-2 rounded-lg text-red-500 hover:bg-red-500 hover:text-white font-sans font-semibold text-md">
               Cancel
             </button>
-            <button className="border-2 border-green-500 px-3 py-2 rounded-lg text-green-500 hover:bg-green-500 hover:text-white font-sans font-semibold text-md">
+            <button type="submit" className="border-2 border-green-500 px-3 py-2 rounded-lg text-green-500 hover:bg-green-500 hover:text-white font-sans font-semibold text-md">
               Save
             </button>
           </div>
