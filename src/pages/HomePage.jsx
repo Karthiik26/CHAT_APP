@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, setUser, setOnlineUser, setSocketConnection } from "../Redux/UserSlice";
+import {
+  logout,
+  setUser,
+  setOnlineUser,
+  setSocketConnection,
+} from "../Redux/UserSlice";
 import SideBar from "../component/SideBar";
-import io from 'socket.io-client'
+import io from "socket.io-client";
 
 const HomePage = () => {
   const redux = useSelector((state) => state.user);
@@ -14,6 +19,12 @@ const HomePage = () => {
   useEffect(() => {
     console.log(redux);
   }, [redux]);
+
+  console.log("location", location);
+
+  useEffect(() => {
+    nav("/Email");
+  }, [!localStorage.getItem("token")]);
 
   useEffect(() => {
     HandleUserDataGetting();
@@ -38,25 +49,25 @@ const HomePage = () => {
   };
 
   // Socket connection
-  useEffect(()=>{
+  useEffect(() => {
     const socketConnection = io(import.meta.env.VITE_BACKEND_URL, {
-      auth : {
-        token : localStorage.getItem('token')
-      }
+      auth: {
+        token: localStorage.getItem("token"),
+      },
     });
 
-    socketConnection.on('onlineUser', (data)=>{
+    socketConnection.on("onlineUser", (data) => {
       console.log(data);
       dispatch(setOnlineUser(data));
-    })
+    });
     // console.log(socketConnection.connect);
 
-    dispatch(setSocketConnection(socketConnection))
+    dispatch(setSocketConnection(socketConnection));
 
-    return ()=>{
-      socketConnection.disconnect()
-    }
-  }, [])
+    return () => {
+      socketConnection.disconnect();
+    };
+  }, []);
 
   const basePath = location.pathname === "/";
 
@@ -71,13 +82,13 @@ const HomePage = () => {
       </section>
 
       {basePath && (
-        <div className={`${basePath && "hidden"} lg:block`} >
+        <div className={`${basePath && "hidden"} lg:block`}>
           <div className="lg:flex flex-col gap-2 justify-center items-center h-screen hidden">
             <svg
               stroke="currentColor"
               fill="currentColor"
               className="text-gray-400"
-              stroke-width="0" 
+              stroke-width="0"
               viewBox="0 0 24 24"
               height="10em"
               width="10em"
