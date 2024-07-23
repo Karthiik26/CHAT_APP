@@ -15,7 +15,7 @@ const CheckPasswordPage = () => {
 
   const [data, setData] = useState({
     password: "",
-    userId: location?.state?._id.toString(),
+    userId: location?.state?._id,
   });
 
   useEffect(() => {
@@ -52,14 +52,16 @@ const CheckPasswordPage = () => {
       });
 
       const apires = await response.json();
+      
+      console.log("apires", apires);
 
       if (apires.success) {
         toast.success(apires?.message);
-        nav("/", {
-          state: apires?.data,
+
+        nav('/', {
+          state: apires?.token,
         });
 
-        console.log("apires", apires);
 
         dispatch(setToken(apires?.token));
 
