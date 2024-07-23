@@ -5,6 +5,7 @@ require("dotenv").config();
 const router = require('./routes/index')
 const cookieparser = require('cookie-parser');
 const { app, server } = require('./Socket/index')
+const bodyParser = require('body-parser')
 
 // const app = express();
 const PORT = process.env.PORT || 4545;
@@ -19,6 +20,11 @@ app.use(
         credentials: true,
     })
 );
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Default route
 app.get("/", (req, res) => {
