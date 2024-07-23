@@ -10,10 +10,10 @@ async function UpdateUser(req, res) {
     const { name, profile_pic } = req.body;
 
     const UpdateUser = await UserModel.updateOne(
-      { _id: user._id },
+      { _id: user?._id },
       {
-        name,
-        profile_pic,
+        name : name,
+        profile_pic : profile_pic
       }
     );
 
