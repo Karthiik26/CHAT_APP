@@ -23,8 +23,12 @@ const HomePage = () => {
   console.log("location", location);
 
   useEffect(() => {
-    nav("/Email");
-  }, [!localStorage.getItem("token")]);
+    if(!localStorage.getItem("token")){
+      nav("/Email");
+    }else{
+      nav("/");
+    }
+  }, []);
 
   useEffect(() => {
     HandleUserDataGetting();
