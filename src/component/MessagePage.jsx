@@ -231,7 +231,7 @@ const MessagePage = () => {
       </section>
 
       {/* main */}
-      <section className="h-[calc(100vh-140px)] md:h-[calc(100vh-240px)] overflow-hidden overflow-y-scroll scrollbar">
+      <section className="h-[calc(100vh-140px)] sm:h-[calc(100vh-240px)] overflow-hidden overflow-y-scroll scrollbar">
         {AllMessages?.map((msg, index) => {
           return (
             <div
